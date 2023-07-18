@@ -4,7 +4,7 @@ const app=express();
 const port=process.env.PORT || 3000;
 
 app.get('/api/contacts',(req,res)=>{
-  res.json({msg:'Get all the Contacts'});
+  res.status(200).json({msg:'Get all the Contacts'});
 })
 
 app.listen(port,()=>{
