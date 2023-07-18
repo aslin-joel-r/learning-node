@@ -3,9 +3,7 @@ const dotenv =require("dotenv").config();
 const app=express();
 const port=process.env.PORT || 3000;
 
-app.get('/api/contacts',(req,res)=>{
-  res.status(200).json({msg:'Get all the Contacts'});
-})
+app.use("/api/contacts",require("./routes/contactRoutes"));
 
 app.listen(port,()=>{
   console.log(`Server is running on port ${port}`);
