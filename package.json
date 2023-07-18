@@ -4,13 +4,23 @@
   },
   "name": "learning-node",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aslin R",
   "license": "ISC",
-  "description": ""
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aslin-R/learning-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aslin-R/learning-node/issues"
+  },
+  "homepage": "https://github.com/Aslin-R/learning-node#readme",
+  "description": "Learning the node and express js "
 }
