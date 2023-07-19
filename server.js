@@ -1,28 +1,37 @@
-// create a basic express program with a server and the response message with hello
+const { MongoClient } = require("mongodb");
 
-const express = require('express');
-const mongodb= require('mongodb');
-const app = express();
+// Connection URI for the MongoDB server running on localhost, default port 27017
+const uri = "mongodb://localhost:27017/";
 
-const url= 'mongodb://localhost:27017';
+// Name of the new database
+const databaseName = "All_Glory_to_Jesus";
 
-const MongoClient = mongodb.MongoClient;
+// Data to be inserted into the collection
+const collectionData = { name: "joel" };
 
-MongoClient.connect(url, function(err, db) {
-  if (err) {
-    console.log('Error in connecting to database');
-  };
-  console.log("Database created!");
-  db.close();
-});
+// Function to connect to MongoDB, create a database, and add a collection
+async function createDatabaseAndCollection() {
+  const client = new MongoClient(uri);
 
-app.get('/', (req, res) => {
-  res.send('Hello');
+  try {
+    // Connect to MongoDB
+    await client.connect();
+
+    // Get a reference to the new database
+    const database = client.db(databaseName);
+
+    // Create a new collection and insert data
+    const collection = database.collection("mycollection");
+    await collection.insertOne(collectionData);
+
+    console.log("Database and collection created successfully!");
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    // Close the connection to the MongoDB server
+    client.close();
+  }
 }
-)
 
-// connect with database mongodb
-app.listen(5001, () => {
-  console.log('Server is running on port 5001');
-}
-)
+// Call the function to create the database and collection
+createDatabaseAndCollection();
